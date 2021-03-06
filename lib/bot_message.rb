@@ -11,4 +11,8 @@ class BotMessage
     to see a list of tasks I can help you with\\."
   end
 
+  def stop_message
+    "Bye *#{message.from.first_name}*\\. Feel free to check back on me again\\! I'm always here my friend\\."
+  end
+
 end
