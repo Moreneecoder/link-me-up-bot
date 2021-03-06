@@ -15,4 +15,13 @@ class BotMessage
     "Bye *#{message.from.first_name}*\\. Feel free to check back on me again\\! I'm always here my friend\\."
   end
 
+  def help_message
+    "I see you need some help! Here is a list of commands to interact with me:
+    
+    \* /start - Initiate the bot
+    \* /stop - End conversation with bot
+    \* /help - Get list of tasks
+    \* /connect - Tell bot to connect you with people who share your interest" 
+  end
+
 end
