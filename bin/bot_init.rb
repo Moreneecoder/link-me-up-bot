@@ -11,21 +11,21 @@ connect_request = LinkMeUp.new
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     bot_message = BotMessage.new(message)
-    
+
     case message.text
     when '/start'
-      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.start_message )
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.start_message)
     when '/stop'
-      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.stop_message )
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.stop_message)
     when '/help'
-        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message )
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
     when '/connect'
-        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.connect_message )
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.connect_message)
     end
 
-    # if connect_request.ready?(message.text)
-    #     # LinkMeUp.get_request(message_text)
-    #     p message.text.split(" ") unless message.text == '/connect'
-    # end
+    if connect_request.ready?(message.text)
+      # LinkMeUp.get_request(message_text)
+      p message.text.split(' ') unless message.text == '/connect'
+    end
   end
 end
