@@ -31,8 +31,13 @@ class BotMessage
   end
 
   def match_found_message(interests)
-    message = "Pssst\\! found you a match for the following interests: "
+    message = 'Pssst\\! found you a match for the following interests: '
     interests.each { |interest| message.concat(" _#{interest}_,") }
     message
+  end
+
+  def match_not_found_message
+    'Hey there\\! There is currently no match for your interest\\.
+    But trust me, I will alert you when we find a match\\.'
   end
 end
