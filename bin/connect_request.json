@@ -1,13 +1,39 @@
 {
-    "table": [
-        {
-         "id": "080291081847",
-         "interests": ["bitcoin", "stock market"]
-        },
-
-        {
-          "id": "4321",
-          "interests": ["gaming", "movies", "bitcoin"]
-        }
-    ]
+  "table": [
+    {
+      "id": "1",
+      "interests": [
+        "bitcoin",
+        "stock market"
+      ],
+      "username": "pentitude"
+    },
+    {
+      "id": "2",
+      "interests": [
+        "gaming",
+        "movies",
+        "bitcoin"
+      ],
+      "username": "mobello19"
+    },
+    {
+      "id": 2345,
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "fighting",
+        "wrestling"
+      ]
+    },
+    {
+      "id": 2345,
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "eating",
+        "sleeping"
+      ]
+    }
+  ]
 }

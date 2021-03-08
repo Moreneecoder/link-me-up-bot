@@ -15,23 +15,50 @@ class LinkMeUp
     @ready
   end
 
-  def find_match(message)
-    request = message.text.split(',')
+  def formatted_request(message_text)
+    request = message_text.split(',')
     stripped_request = []
     request.each { |item| stripped_request.push(item.strip) }
+    stripped_request
+  end
+
+  def find_match(message)
+    formatted_request = self.formatted_request(message.text)
 
     json = File.read('./bin/connect_request.json')
     obj = JSON.parse(json)
 
     obj['table'].each do |table|
-      user = table['id']
+      user = "t\\.me/#{table['username']}"
       interests = table['interests']
 
-      matched_interests = interests.select { |interest| stripped_request.include? interest }
+      matched_interests = interests.select { |interest| formatted_request.include? interest }
 
       return user if matched_interests.count == 2
     end
     
     return false
+  end
+
+  def store_interest(messageObj)
+    interests = self.formatted_request(messageObj.text)
+
+    data = {
+      "id": 2345,
+      chat_id: messageObj.chat.id,
+      username: messageObj.from.username,
+      interests: interests
+    }
+
+    json = File.read('./bin/connect_request.json')
+    obj = JSON.parse(json)
+    obj["table"].push(data);
+
+    formatted_data = JSON.pretty_generate(obj);
+
+    File.open("./bin/connect_request.json","w") do |f|
+      f.write(formatted_data)
+    end
+
   end
 end
