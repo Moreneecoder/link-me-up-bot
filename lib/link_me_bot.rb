@@ -35,7 +35,9 @@ class LinkMeUp
 
       matched_interests = interests.select { |interest| formatted_request.include? interest }
 
-      return table if matched_interests.count >= 1
+      matched_data = {obj: table, matched_interests: matched_interests}
+
+      return matched_data if matched_interests.count >= 1
     end
     
     return false
