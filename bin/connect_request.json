@@ -9,21 +9,20 @@
       "username": "pentitude"
     },
     {
-      "id": "2",
-      "interests": [
-        "gaming",
-        "movies",
-        "bitcoin"
-      ],
-      "username": "mobello19"
-    },
-    {
       "id": 2345,
       "chat_id": 1690066771,
       "username": "mobello19",
       "interests": [
-        "fighting",
-        "wrestling"
+        "love",
+        "affection"
+      ]
+    },
+    {
+      "id": 2345,
+      "chat_id": 1515136662,
+      "username": "Pentitude",
+      "interests": [
+        "\\connect"
       ]
     },
     {
@@ -31,8 +30,7 @@
       "chat_id": 1690066771,
       "username": "mobello19",
       "interests": [
-        "eating",
-        "sleeping"
+        "clear"
       ]
     }
   ]

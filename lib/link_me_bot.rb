@@ -29,12 +29,12 @@ class LinkMeUp
     obj = JSON.parse(json)
 
     obj['table'].each do |table|
-      user = "t\\.me/#{table['username']}"
+      # user = "t\\.me/#{table['username']}"
       interests = table['interests']
 
       matched_interests = interests.select { |interest| formatted_request.include? interest }
 
-      return user if matched_interests.count == 2
+      return table if matched_interests.count >= 1
     end
     
     return false
@@ -44,7 +44,7 @@ class LinkMeUp
     interests = self.formatted_request(messageObj.text)
 
     data = {
-      "id": 2345,
+      id: 2345,
       chat_id: messageObj.chat.id,
       username: messageObj.from.username,
       interests: interests
