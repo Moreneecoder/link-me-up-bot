@@ -10,7 +10,7 @@ class LinkMeUp
   def ready?(message_text)
     @ready = true if message_text == '/connect'
 
-    # if message is not a command
+    # if message is any other command
     @ready = false if message_text != '/connect' && message_text[0] == '/'
     @ready
   end
@@ -31,7 +31,7 @@ class LinkMeUp
 
       return user if matched_interests.count == 2
     end
-    'Hey there\\! There is currently no match for your interest\\.
-    But trust us we will alert you when we find a match\\.'
+    
+    return false
   end
 end

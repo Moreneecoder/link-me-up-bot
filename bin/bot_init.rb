@@ -24,9 +24,17 @@ Telegram::Bot::Client.run(token) do |bot|
     end
 
     if connect_request.ready?(message.text)
-      match_found = connect_request.find_match(message) unless message.text == '/connect'
+      p match_found = connect_request.find_match(message) unless message.text == '/connect'
 
-      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_found) if match_found
+      if match_found
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_found)
+      elsif !match_found && message.text != '/connect'
+        # store interest
+        response = 'Hey there\\! There is currently no match for your interest\\.
+        But trust us we will alert you when we find a match\\.'
+        
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: response)
+      end
     end
   end
 end
