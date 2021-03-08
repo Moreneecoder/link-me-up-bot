@@ -26,7 +26,7 @@ class BotMessage
 
   def connect_message
     "Great\\! To connect you with people who share similar interests, type a list
-     of your current interests and separate them with spaces\\.
-    E\\.g: _mentorship_ _football_ _politics_ _beyonce_ _tech_\\. You cannot enter more than 5\\."
+     of your current interests and separate them with commas\\.
+    E\\.g: _mentorship_, _football_, _politics_, _beyonce_, _tech_\\. You cannot enter more than 5\\."
   end
 end

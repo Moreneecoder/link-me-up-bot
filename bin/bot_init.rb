@@ -24,8 +24,9 @@ Telegram::Bot::Client.run(token) do |bot|
     end
 
     if connect_request.ready?(message.text)
-      # LinkMeUp.get_request(message_text)
-      p message.text.split(' ') unless message.text == '/connect'
+      match_found = connect_request.find_match(message) unless message.text == '/connect'
+
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_found) if match_found
     end
   end
 end

@@ -1,0 +1,13 @@
+{
+    "table": [
+        {
+         "id": 1234,
+         "interests": ["bitcoin", "stock market"]
+        },
+
+        {
+          "id": 4321,
+          "interests": ["gaming", "movies", "bitcoin"]
+        }
+    ]
+}
