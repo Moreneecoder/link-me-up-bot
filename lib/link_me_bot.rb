@@ -8,6 +8,10 @@ class LinkMeUp
     @ready = false
   end
 
+  def run_bot
+    
+  end
+
   def ready?(message_text)
     @ready = true if message_text == '/connect'
 

@@ -27,6 +27,7 @@ Telegram::Bot::Client.run(token) do |bot|
     end
 
     if connect_request.ready?(message.text) && message.text != '/connect'
+      p message
       user_interests = connect_request.formatted_request(message.text)
 
       if user_interests.count > 5
