@@ -30,4 +30,10 @@ class BotMessage
     E\\.g: _mentorship_, _football_, _politics_, _beyonce_, _tech_\\. You cannot enter more than 5\\."
   end
 
+  def match_found_message(interests)
+    message = 'Pssst\\! found you a match for the following interests: '
+    interests.each { |interest| message.concat(" _#{interest}_,") }
+    message
+  end
+
 end
