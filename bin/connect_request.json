@@ -1,96 +1,31 @@
 {
   "table": [
     {
-      "id": "1",
+      "id": "7d8df5a2-8309-458b-9101-0ffc8b34db54",
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "football",
+        "gaming",
+        "tech"
+      ]
+    },
+    {
+      "id": "0eb45851-fe0b-4816-ac2e-c07df5f1779b",
+      "chat_id": 1690066771,
+      "username": "mobello19",
       "interests": [
         "bitcoin",
         "stock market"
-      ],
-      "username": "pentitude"
+      ]
     },
     {
-      "id": 2345,
+      "id": "ee7da029-0ea5-48ec-a69a-19a49be47899",
       "chat_id": 1690066771,
       "username": "mobello19",
       "interests": [
         "love",
         "affection"
-      ]
-    },
-    {
-      "id": 2345,
-      "chat_id": 1515136662,
-      "username": "Pentitude",
-      "interests": [
-        "tickling",
-        "fun"
-      ]
-    },
-    {
-      "id": 2345,
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "clear"
-      ]
-    },
-    {
-      "id": "9631cf5a-acae-43f3-bb97-75e9b04f42e7",
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "marriage",
-        "culture"
-      ]
-    },
-    {
-      "id": "e20c97e7-1b50-45b9-b3c8-54ed6128dcde",
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "food",
-        "party"
-      ]
-    },
-    {
-      "id": "bb694c84-ce30-4c8d-9301-9061b292a60b",
-      "chat_id": 1515136662,
-      "username": "Pentitude",
-      "interests": [
-        "Thank you"
-      ]
-    },
-    {
-      "id": "a984c64c-7080-4547-af13-fe2eb23e83c5",
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "hey there"
-      ]
-    },
-    {
-      "id": "969ca6b5-c33f-4413-8122-3daa5f57f9c2",
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "gossips"
-      ]
-    },
-    {
-      "id": "a1dd0756-f5b3-44ed-8071-b94f004875a6",
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "ajide"
-      ]
-    },
-    {
-      "id": "d814ad0d-23b0-4499-b417-d06b7a3eb437",
-      "chat_id": 1690066771,
-      "username": "mobello19",
-      "interests": [
-        "marathon",
-        "high jump"
       ]
     }
   ]

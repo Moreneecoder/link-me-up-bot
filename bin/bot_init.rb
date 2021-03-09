@@ -23,14 +23,14 @@ Telegram::Bot::Client.run(token) do |bot|
       bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.connect_message)
     end
 
-    if connect_request.ready?(message.text)
+    if connect_request.ready?(message.text) && message.text != '/connect'
       user_interests = connect_request.formatted_request(message.text)
 
       if(user_interests.count > 5)
         bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.exceeded_message)
       else
 
-        match_found = connect_request.find_match(message) unless message.text == '/connect'
+        match_found = connect_request.find_match(message)
 
         if match_found
 
@@ -51,6 +51,13 @@ Telegram::Bot::Client.run(token) do |bot|
           bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
         end
       end
+
+    else
+      #  connect_request.ready?(message.text)
+      unless ['/connect', '/start', '/help', '/stop'].include? message.text
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
+      end
     end
+
   end
 end
