@@ -69,3 +69,28 @@ To get the bot running, follow the instructions below:
 ![](https://user-images.githubusercontent.com/38987207/110536384-b07fc700-8121-11eb-929a-ac7c51755abb.png)
 
 * That's it! Have fun!
+
+## Author
+
+👤 ** Morenikeji Fuad Bello**
+
+- GitHub: [@Moreneecoder](https://github.com/Moreneecoder)
+- Twitter - [@mo_bello19](https://twitter.com/mo_bello19)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/Moreneecoder/link-me-up-bot/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- [Micoverse](https://microverse.org) for the rubocop setup link
+
+## 📝 License
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
