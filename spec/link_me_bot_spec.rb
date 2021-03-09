@@ -9,7 +9,9 @@ describe LinkMeUp do
 
   let(:interest) {data_table[0]['interests'][0]}
   let(:true_message) { Telegram::Bot::Types::Message.new(text: interest) }
-  let(:false_message) { Telegram::Bot::Types::Message.new(text: 'hunting') }
+  let(:chat_obj) { Telegram::Bot::Types::Chat.new(id: 1690066771) }
+  let(:user_obj) { Telegram::Bot::Types::User.new(username: 'mobello19') }
+  let(:false_message) { Telegram::Bot::Types::Message.new(text: 'hunting, skydiving', chat: chat_obj, from: user_obj) }
   let(:link_up) { LinkMeUp.new }
   let(:message_text) {'bitcoin, tech, sports'}
 
@@ -56,12 +58,42 @@ describe LinkMeUp do
 
         expect(link_up.find_match(true_message)).to eql(actual)
       end
+
+      it 'resets the @ready class variable to false' do
+        link_up.find_match(true_message)
+        expect(link_up.ready).to be false
+      end
     end
 
     context 'when no interest match is found' do
       it 'returns a false' do
         expect(link_up.find_match(false_message)).to be false
       end
+    end
+  end
+
+  describe '#store_interest' do
+    it 'stores username and interests in json file' do
+      actual = {
+        "chat_id" => false_message.chat.id,
+        "username" => false_message.from.username,
+        "interests" => link_up.formatted_request(false_message.text)
+      }
+
+      link_up.store_interest(false_message)
+
+      json = File.read('./bin/connect_request.json')
+      obj = JSON.parse(json)
+      data_table = obj['table']
+
+      last_entry = data_table[data_table.length - 1]
+      actual = {"id" => last_entry["id"]}.merge(actual)
+      expect(last_entry).to eql(actual)
+    end
+
+    it 'resets the @ready class variable to false' do
+      link_up.find_match(false_message)
+      expect(link_up.ready).to be false
     end
   end
 end
