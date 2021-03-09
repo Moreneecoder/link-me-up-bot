@@ -12,6 +12,8 @@ token = ENV['BOT_API_KEY']
 connect_request = LinkMeUp.new
 
 Telegram::Bot::Client.run(token) do |bot|
+  puts "LinkMeUp bot running..."
+
   bot.listen do |message|
     bot_message = BotMessage.new(message)
 
