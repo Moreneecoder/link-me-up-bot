@@ -42,7 +42,7 @@ class BotMessage
   end
 
   def exceeded_message
-    'Sorry, I don\'t process more than 5 interests at a time\\. 
+    'Sorry, I don\'t process more than 5 interests at a time\\.
     Kindly enter /connect again and stick to 5 interests or less this time\\.'
   end
 end

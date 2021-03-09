@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+# rubocop:disable Metrics/BlockLength
+
 require 'dotenv'
 Dotenv.load('./.env')
 require 'telegram/bot'
@@ -26,7 +29,7 @@ Telegram::Bot::Client.run(token) do |bot|
     if connect_request.ready?(message.text) && message.text != '/connect'
       user_interests = connect_request.formatted_request(message.text)
 
-      if(user_interests.count > 5)
+      if user_interests.count > 5
         bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.exceeded_message)
       else
 
@@ -53,11 +56,11 @@ Telegram::Bot::Client.run(token) do |bot|
       end
 
     else
-      #  connect_request.ready?(message.text)
       unless ['/connect', '/start', '/help', '/stop'].include? message.text
         bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
       end
     end
-
   end
 end
+
+# rubocop:enable Metrics/BlockLength
