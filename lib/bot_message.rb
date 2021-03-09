@@ -45,5 +45,4 @@ class BotMessage
     'Sorry, I don\'t process more than 5 interests at a time\\.
     Kindly enter /connect again and stick to 5 interests or less this time\\.'
   end
-
 end

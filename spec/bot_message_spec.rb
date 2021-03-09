@@ -1,11 +1,13 @@
+# rubocop:disable Metrics/BlockLength
+
 require 'telegram/bot'
 require './lib/bot_message'
 
 describe BotMessage do
   let(:user_obj) { Telegram::Bot::Types::User.new(username: 'mobello19') }
   let(:message) { Telegram::Bot::Types::Message.new(text: 'hunting, skydiving', from: user_obj) }
-  let(:bot_message) {BotMessage.new(message)}
-  let(:interests) { ['bitcoin', 'tech', 'sports'] }
+  let(:bot_message) { BotMessage.new(message) }
+  let(:interests) { %w[bitcoin tech sports] }
 
   describe '#start_message' do
     it 'returns a string' do
@@ -54,3 +56,5 @@ describe BotMessage do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
