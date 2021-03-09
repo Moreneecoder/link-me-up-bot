@@ -36,4 +36,9 @@ class BotMessage
     message
   end
 
+  def match_not_found_message
+    'Hey there\\! There is currently no match for your interest\\.
+    But trust me, I will alert you when we find a match\\.'
+  end
+
 end
