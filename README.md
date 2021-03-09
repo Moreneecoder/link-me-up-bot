@@ -26,6 +26,7 @@ To set up a local version of this project, a collection of steps have been put t
 - Now that you have a local copy of the project, navigate to the root of the project folder from your terminal.
 - Run `bundle install` to install all dependencies in the Gemfile file.
 - One last **important** detail. To control your bot uniquely, you will need a Telegram Bot Api *token* from the [Botfather](https://core.telegram.org/bots#6-botfather)
+- When you get your api token from Botfather, open the bot_init.rb file and replace the value of the token variable with your new token. The current value of the token variable should be `ENV['BOT_API_KEY']`.
 
 ### Other Dependencies
 
