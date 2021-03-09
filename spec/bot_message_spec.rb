@@ -1,5 +1,3 @@
-# rubocop:disable Metrics/BlockLength
-
 require 'telegram/bot'
 require './lib/bot_message'
 
@@ -56,5 +54,3 @@ describe BotMessage do
     end
   end
 end
-
-# rubocop:enable Metrics/BlockLength

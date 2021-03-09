@@ -1,5 +1,3 @@
-# rubocop:disable Metrics/BlockLength
-
 require './lib/link_me_bot'
 require 'telegram/bot'
 require 'json'
@@ -100,5 +98,3 @@ describe LinkMeUp do
     end
   end
 end
-
-# rubocop:enable Metrics/BlockLength
