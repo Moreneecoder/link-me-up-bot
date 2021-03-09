@@ -23,8 +23,8 @@ class LinkMeUp
     stripped_request
   end
 
-  def find_match(message)
-    formatted_request = self.formatted_request(message.text)
+  def find_match(message_obj)
+    formatted_request = self.formatted_request(message_obj.text)
 
     json = File.read('./bin/connect_request.json')
     obj = JSON.parse(json)
