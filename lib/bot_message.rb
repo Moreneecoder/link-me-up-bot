@@ -40,4 +40,9 @@ class BotMessage
     'Hey there\\! There is currently no match for your interest\\.
     But trust me, I will alert you when we find a match\\.'
   end
+
+  def exceeded_message
+    'Sorry, I don\'t process more than 5 interests at a time\\. 
+    Kindly enter /connect again and stick to 5 interests or less this time\\.'
+  end
 end

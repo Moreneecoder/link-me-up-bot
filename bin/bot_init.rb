@@ -24,25 +24,32 @@ Telegram::Bot::Client.run(token) do |bot|
     end
 
     if connect_request.ready?(message.text)
-      p match_found = connect_request.find_match(message) unless message.text == '/connect'
+      user_interests = connect_request.formatted_request(message.text)
 
-      if match_found
+      if(user_interests.count > 5)
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.exceeded_message)
+      else
 
-        current_username = "t\\.me/#{message.from.username}"
-        matched_username = "t\\.me/#{match_found[:obj]['username']}"
+        match_found = connect_request.find_match(message) unless message.text == '/connect'
 
-        matched_message = bot_message.match_found_message(match_found[:matched_interests])
+        if match_found
 
-        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
-        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_username)
+          current_username = "t\\.me/#{message.from.username}"
+          matched_username = "t\\.me/#{match_found[:obj]['username']}"
 
-        bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: matched_message)
-        bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: current_username)
-      elsif !match_found && message.text != '/connect'
+          matched_message = bot_message.match_found_message(match_found[:matched_interests])
 
-        connect_request.store_interest(message)
-        match_not_found_msg = bot_message.match_not_found_message
-        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
+          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_username)
+
+          bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: matched_message)
+          bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: current_username)
+        elsif !match_found && message.text != '/connect'
+
+          connect_request.store_interest(message)
+          match_not_found_msg = bot_message.match_not_found_message
+          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
+        end
       end
     end
   end
