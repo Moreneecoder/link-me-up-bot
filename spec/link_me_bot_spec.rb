@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/BlockLength
+
 require './lib/link_me_bot'
 require 'telegram/bot'
 require 'json'
@@ -7,13 +9,13 @@ describe LinkMeUp do
   obj = JSON.parse(json)
   data_table = obj['table']
 
-  let(:interest) {data_table[0]['interests'][0]}
+  let(:interest) { data_table[0]['interests'][0] }
   let(:true_message) { Telegram::Bot::Types::Message.new(text: interest) }
-  let(:chat_obj) { Telegram::Bot::Types::Chat.new(id: 1690066771) }
+  let(:chat_obj) { Telegram::Bot::Types::Chat.new(id: 1_690_066_771) }
   let(:user_obj) { Telegram::Bot::Types::User.new(username: 'mobello19') }
   let(:false_message) { Telegram::Bot::Types::Message.new(text: 'hunting, skydiving', chat: chat_obj, from: user_obj) }
   let(:link_up) { LinkMeUp.new }
-  let(:message_text) {'bitcoin, tech, sports'}
+  let(:message_text) { 'bitcoin, tech, sports' }
 
   describe '#ready?' do
     it 'returns a boolean' do
@@ -40,7 +42,7 @@ describe LinkMeUp do
     end
 
     it 'returns array conversion of string argument' do
-      expect(link_up.formatted_request(message_text)).to eql(['bitcoin', 'tech', 'sports'])
+      expect(link_up.formatted_request(message_text)).to eql(%w[bitcoin tech sports])
     end
   end
 
@@ -52,8 +54,8 @@ describe LinkMeUp do
 
       it 'returns an hash containing an array of matched interests and an hash object of matched user' do
         actual = {
-          :matched_interests=>[interest],
-          :obj=>data_table[0]
+          matched_interests: [interest],
+          obj: data_table[0]
         }
 
         expect(link_up.find_match(true_message)).to eql(actual)
@@ -75,9 +77,9 @@ describe LinkMeUp do
   describe '#store_interest' do
     it 'stores username and interests in json file' do
       actual = {
-        "chat_id" => false_message.chat.id,
-        "username" => false_message.from.username,
-        "interests" => link_up.formatted_request(false_message.text)
+        'chat_id' => false_message.chat.id,
+        'username' => false_message.from.username,
+        'interests' => link_up.formatted_request(false_message.text)
       }
 
       link_up.store_interest(false_message)
@@ -87,7 +89,7 @@ describe LinkMeUp do
       data_table = obj['table']
 
       last_entry = data_table[data_table.length - 1]
-      actual = {"id" => last_entry["id"]}.merge(actual)
+      actual = { 'id' => last_entry['id'] }.merge(actual)
       expect(last_entry).to eql(actual)
     end
 
@@ -97,3 +99,5 @@ describe LinkMeUp do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
