@@ -1,5 +1,5 @@
 # link-me-up-bot
-This project is a Telegram bot that connects people via their DM based on their interests. Built with Ruby and the telegram-bot-ruby library.
+> This project is a Telegram bot that connects people via their DM based on their interests. Built with Ruby and the telegram-bot-ruby library.
 
 ![](https://user-images.githubusercontent.com/38987207/110521212-c08eab00-810f-11eb-8d65-0deb57efd5f9.png)
 
@@ -35,3 +35,37 @@ To set up a local version of this project, a collection of steps have been put t
   - run `gem install rspec` in your terminal. This should install rspec globally on your local machine.
   - run `rspec --version`. This should display your rspec version if successfully installed.
   - run `rspec` to see passing and failing tests.
+
+### Usage
+
+At this point, you now have everything you need to properly run the program (source code, ruby, rspec, rubocop, api token). If not, refer back to the setup section of this documentation.
+
+To get the bot running, follow the instructions below:
+
+* run `bin/bot_init.rb` in the terminal. You should make sure your terminal is navigated to the current directory of the program. Now you should see a message that says **Bot is running...**
+
+![](https://user-images.githubusercontent.com/38987207/110529160-30556380-8119-11eb-8bb6-a540988730c7.png)
+
+* Open your newly created bot in telegram and send ***/help*** as shown in the image below.
+* You should get a response from the bot with a short list of commands
+
+![](https://user-images.githubusercontent.com/38987207/110531033-609e0180-811b-11eb-9366-ea6ce65106b3.png)
+
+* Send ***/connect*** to the bot to request a new connection based on your interests.
+* The bot should now give you a short important note on how to format your interests.
+
+![](https://user-images.githubusercontent.com/38987207/110531861-647e5380-811c-11eb-95d5-0a3b551ed797.png)
+
+> **NOTE**: The ***/connect*** command is what tells the bot you want to enter new interests. You have to enter it anytime you want request a new connection by new interests.
+
+* Now, enter your interests (a maximum of five) and send to the bot.
+* If at least a match is found with one of your interests, the bot should send you the telegram chat link of the matched user. It will also send them your chat link. See reference in the image below:
+
+![](https://user-images.githubusercontent.com/38987207/110533927-c8a21700-811e-11eb-81aa-46d544874330.png)
+
+* If a match is not found instantly, the program will store your interest in the connect_request.json file.
+* When a new connection request that matches your interest comes along, you will get their chat link and they will get yours.
+
+![](https://user-images.githubusercontent.com/38987207/110536384-b07fc700-8121-11eb-929a-ac7c51755abb.png)
+
+* That's it! Have fun!
