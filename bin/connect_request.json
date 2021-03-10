@@ -53,6 +53,33 @@
         "tennis",
         "barcelona"
       ]
+    },
+    {
+      "id": "56fab26d-2f2e-4137-90fe-e72dca8b9c1c",
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "hunting",
+        "skydiving"
+      ]
+    },
+    {
+      "id": "1034d50a-23ae-4844-9254-0efba163b534",
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "hunting",
+        "skydiving"
+      ]
+    },
+    {
+      "id": "c2b61d91-9e1f-40da-9ce3-daf29776c96d",
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "hunting",
+        "skydiving"
+      ]
     }
   ]
 }

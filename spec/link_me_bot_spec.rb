@@ -21,17 +21,22 @@ describe LinkMeUp do
       expect(link_up.ready?('/connect')).to be true
     end
 
-    it 'returns true if argument is /connect' do
+    it 'returns true if command is /connect' do
       expect(link_up.ready?('/connect')).to be true
     end
 
-    it 'returns false if argument is not /connect' do
+    it 'returns false if command is not /connect' do
       expect(link_up.ready?('/help')).to be false
     end
 
-    it 'returns true if last command is /connect and current argument is a non-command string' do
+    it 'returns true if last command is /connect and current interest argument is a non-command string' do
       link_up.ready?('/connect')
       expect(link_up.ready?('football tech')).to be true
+    end
+
+    it 'returns false if last command is /connect and current interest argument is a command string' do
+      link_up.ready?('/connect')
+      expect(link_up.ready?('/football')).to be false
     end
   end
 
