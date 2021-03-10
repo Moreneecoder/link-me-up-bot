@@ -21,12 +21,12 @@ To set up a local version of this project, a collection of steps have been put t
 - Install [git](https://git-scm.com/downloads)
 - Install [the Ruby programming language](https://ruby-doc.org/downloads/), if you haven't already.
 - Open Terminal
-- Navigate to the preferred location/folder you want the game on your local machine. Use `cd <file-path>` for this.
-- Run `git clone https://github.com/Moreneecoder/link-me-up-bot.git` to download the game source file.
+- Navigate to the preferred location/folder you want the app on your local machine. Use `cd <file-path>` for this.
+- Run `git clone https://github.com/Moreneecoder/link-me-up-bot.git` to download the bot source file.
 - Now that you have a local copy of the project, navigate to the root of the project folder from your terminal.
 - Run `bundle install` to install all dependencies in the Gemfile file.
 - One last **important** detail. To control your bot uniquely, you will need a Telegram Bot Api *token* from the [Botfather](https://core.telegram.org/bots#6-botfather)
-- When you get your api token from Botfather, open the bot_init.rb file and replace the value of the token variable with your new token. The current value of the token variable should be `ENV['BOT_API_KEY']`.
+- When you get your api token from Botfather, open the main.rb file and replace the value of the token variable with your new token. The current value of the token variable should be `ENV['BOT_API_KEY']`.
 
 ### Other Dependencies
 
@@ -43,7 +43,7 @@ At this point, you now have everything you need to properly run the program (sou
 
 To get the bot running, follow the instructions below:
 
-* run `bin/bot_init.rb` in the terminal. You should make sure your terminal is navigated to the current directory of the program. Now you should see a message that says **Bot is running...**
+* run `bin/main.rb` in the terminal. You should make sure your terminal is navigated to the current directory of the program. Now you should see a message that says **Bot is running...**
 
 ![](https://user-images.githubusercontent.com/38987207/110529160-30556380-8119-11eb-8bb6-a540988730c7.png)
 
