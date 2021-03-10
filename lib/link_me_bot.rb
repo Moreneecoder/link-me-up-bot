@@ -13,7 +13,6 @@ class LinkMeUp
   def ready?(message_text)
     @ready = true if message_text == '/connect'
 
-    # if message is any other command
     @ready = false if message_text != '/connect' && message_text[0] == '/'
     @ready
   end

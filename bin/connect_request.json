@@ -27,6 +27,32 @@
         "hunting",
         "skydiving"
       ]
+    },
+    {
+      "id": "fc0ee06a-685f-435f-a572-fa57a08cc4e8",
+      "chat_id": 1690066771,
+      "username": "mobello19",
+      "interests": [
+        "bitcoin"
+      ]
+    },
+    {
+      "id": "a3095173-1513-436a-99a1-197be8b834b5",
+      "chat_id": 1688590521,
+      "username": null,
+      "interests": [
+        "forex"
+      ]
+    },
+    {
+      "id": "3f52bf41-8b70-417e-9396-6f5ba1414b85",
+      "chat_id": 1688590521,
+      "username": "fuad_bello",
+      "interests": [
+        "free fire",
+        "tennis",
+        "barcelona"
+      ]
     }
   ]
 }
