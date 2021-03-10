@@ -1,5 +1,5 @@
 require 'telegram/bot'
-require './lib/bot_message'
+require_relative '../lib/bot_message'
 
 describe BotMessage do
   let(:user_obj) { Telegram::Bot::Types::User.new(username: 'mobello19') }

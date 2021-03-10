@@ -1,4 +1,4 @@
-require './lib/link_me_bot'
+require_relative '../lib/link_me_bot'
 require 'telegram/bot'
 require 'json'
 

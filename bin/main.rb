@@ -5,8 +5,8 @@
 require 'dotenv'
 Dotenv.load('./.env')
 require 'telegram/bot'
-require './lib/bot_message'
-require './lib/link_me_bot'
+require_relative '../lib/bot_message'
+require_relative '../lib/link_me_bot'
 
 token = ENV['BOT_API_KEY']
 connect_request = LinkMeUp.new
