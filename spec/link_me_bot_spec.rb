@@ -66,11 +66,6 @@ describe LinkMeUp do
       end
 
       it 'returns false when no matched user is found' do
-        actual = {
-          matched_interests: [interest],
-          obj: data_table[0]
-        }
-
         expect(link_up.find_match(false_message)).to be false
       end
 
