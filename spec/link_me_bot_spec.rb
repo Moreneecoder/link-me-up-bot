@@ -65,6 +65,15 @@ describe LinkMeUp do
         expect(link_up.find_match(true_message)).to eql(actual)
       end
 
+      it 'returns false when no matched user is found' do
+        actual = {
+          matched_interests: [interest],
+          obj: data_table[0]
+        }
+
+        expect(link_up.find_match(false_message)).to be false
+      end
+
       it 'resets the @ready class variable to false' do
         link_up.find_match(true_message)
         expect(link_up.ready).to be false
