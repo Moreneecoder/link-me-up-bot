@@ -73,7 +73,7 @@ To get the bot running, follow the instructions below:
 
 ## Author
 
-👤 ** Morenikeji Fuad Bello**
+👤 **Morenikeji Fuad Bello**
 
 - GitHub: [@Moreneecoder](https://github.com/Moreneecoder)
 - Twitter - [@mo_bello19](https://twitter.com/mo_bello19)
