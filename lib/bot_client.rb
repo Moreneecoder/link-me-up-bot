@@ -21,8 +21,6 @@ class BotClient
     end
   end
 
-  private
-
   def listen(bot)
     bot.listen do |message|
       bot_message = BotMessage.new(message)
@@ -51,8 +49,6 @@ class BotClient
     end
   end
 
-  private
-
   def respond_to_command(bot, message, bot_message)
     case message.text
     when '/start'
@@ -66,8 +62,6 @@ class BotClient
     end
   end
 
-  private
-
   def interests_not_above_5?(bot, message, bot_message)
     user_interests = @connect_request.formatted_request(message.text)
 
@@ -77,8 +71,6 @@ class BotClient
     end
     true
   end
-
-  private
 
   def send_two_way_contact(bot, message, match_found, bot_message)
     current_username = "t.me/#{message.from.username}"
@@ -92,6 +84,11 @@ class BotClient
     bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: matched_message)
     bot.api.send_message(chat_id: match_found[:obj]['chat_id'], text: current_username)
   end
+
+  private :listen
+  private :respond_to_command
+  private :interests_not_above_5?
+  private :send_two_way_contact
 end
 
 # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
