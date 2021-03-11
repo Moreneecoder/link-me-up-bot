@@ -17,6 +17,10 @@ class LinkMeUp
     @ready
   end
 
+  def valid_command?(message)
+    ['/connect', '/start', '/help', '/stop'].include? message.text
+  end
+
   def formatted_request(message_text)
     request = message_text.split(',')
     stripped_request = []
