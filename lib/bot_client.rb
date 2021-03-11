@@ -29,14 +29,22 @@ class BotClient
 
       if connection_ready
         if interests_not_above_5?(bot, message, bot_message)
-          puts "Interest not above five"
+            match_found = @connect_request.find_match(message)
+
+          if match_found
+            # send bidirectional message
+            send_two_way_contact(bot, message, match_found, bot_message)
+          elsif !match_found && message.text != '/connect'
+            @connect_request.store_interest(message)
+            match_not_found_msg = bot_message.match_not_found_message
+            bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
+          end
         end
       else
         unless @connect_request.valid_command?(message)
             bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
-          end
-      end
-      
+        end
+      end  
     end
   end
 
@@ -66,6 +74,21 @@ class BotClient
       return false
     end
     true
+  end
+  
+    private
+
+  def send_two_way_contact(bot, message, match_found, bot_message)
+        current_username = "t.me/#{message.from.username}"
+        matched_username = "t.me/#{match_found[:obj]['username']}"
+        
+        matched_message = bot_message.match_found_message(match_found[:matched_interests])
+        
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+        bot.api.send_message(chat_id: message.chat.id, text: matched_username)
+        
+        bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: matched_message)
+        bot.api.send_message(chat_id: match_found[:obj]['chat_id'], text: current_username)
   end
 
 end
