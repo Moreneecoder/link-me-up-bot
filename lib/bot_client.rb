@@ -8,6 +8,7 @@ require_relative '../lib/link_me_bot'
 
 class BotClient
   attr_reader :token
+
   def initialize
     @token = ENV['BOT_API_KEY']
     @connect_request = LinkMeUp.new
