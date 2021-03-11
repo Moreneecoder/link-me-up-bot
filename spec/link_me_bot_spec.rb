@@ -9,6 +9,8 @@ describe LinkMeUp do
 
   let(:interest) { data_table[0]['interests'][0] }
   let(:true_message) { Telegram::Bot::Types::Message.new(text: interest) }
+  let(:true_command_message) { Telegram::Bot::Types::Message.new(text: '/help') }
+  let(:false_command_message) { Telegram::Bot::Types::Message.new(text: 'hello') }
   let(:chat_obj) { Telegram::Bot::Types::Chat.new(id: 1_690_066_771) }
   let(:user_obj) { Telegram::Bot::Types::User.new(username: 'mobello19') }
   let(:false_message) { Telegram::Bot::Types::Message.new(text: 'wrestling, boxing', chat: chat_obj, from: user_obj) }
@@ -104,6 +106,16 @@ describe LinkMeUp do
     it 'resets the @ready class variable to false' do
       link_up.find_match(new_message)
       expect(link_up.ready).to be false
+    end
+  end
+
+  describe '#valid_command?' do
+    it 'returns true if argument is one of the following: /connect, /start, /help, /stop' do
+      expect(link_up.valid_command?(true_command_message)).to be true
+    end
+
+    it 'returns false if argument is none of the following: /connect, /start, /help, /stop' do
+      expect(link_up.valid_command?(false_command_message)).to be false
     end
   end
 end
