@@ -32,9 +32,9 @@ class BotClient
             match_found = @connect_request.find_match(message)
 
           if match_found
-            # send bidirectional message
             send_two_way_contact(bot, message, match_found, bot_message)
           elsif !match_found && message.text != '/connect'
+            
             @connect_request.store_interest(message)
             match_not_found_msg = bot_message.match_not_found_message
             bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
