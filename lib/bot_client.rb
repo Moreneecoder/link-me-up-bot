@@ -56,4 +56,16 @@ class BotClient
     end
   end
 
+  private
+
+  def interests_not_above_5?(bot, message, bot_message)
+    user_interests = @connect_request.formatted_request(message.text)
+
+    if user_interests.count > 5
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.exceeded_message)
+      return false
+    end
+    true
+  end
+
 end
