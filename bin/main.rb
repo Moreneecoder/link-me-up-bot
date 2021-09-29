@@ -35,16 +35,6 @@ db_options = { adapter: 'sqlite3', database: 'app_db' }
 
 ActiveRecord::Base.establish_connection(db_options)
 
-class CreateUsers < ActiveRecord::Migration[6.1]
-  def change
-    create_table :users do |t|
-      t.string :description
-    end
-  end
-end
-
-#   CreateUsers.new.change
-
 # Can override table name and primary key
 class User < ActiveRecord::Base
   #   self.table_name = 'user'
