@@ -1,7 +1,7 @@
 require 'json'
 require 'securerandom'
-require_relative '../persistence/models/interest.rb'
-require_relative '../persistence/models/connect_request.rb'
+require_relative '../persistence/models/interest'
+require_relative '../persistence/models/connect_request'
 
 class LinkMeUp
   attr_accessor :ready
@@ -55,9 +55,9 @@ class LinkMeUp
     formatted_request = self.formatted_request(message_obj)
 
     matched_request = Interest.where(title: formatted_request)
-    .group("connect_request_id")
-    .order("count(connect_request_id) DESC")
-    .limit(2);
+      .group('connect_request_id')
+      .order('count(connect_request_id) DESC')
+      .limit(2)
 
     return matched_request unless matched_request.empty?
 

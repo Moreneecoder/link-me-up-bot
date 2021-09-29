@@ -1,4 +1,4 @@
-require_relative '../db_connect.rb'
+require_relative '../db_connect'
 
 class AddRequestIdToInterests < ActiveRecord::Migration[6.1]
   def change

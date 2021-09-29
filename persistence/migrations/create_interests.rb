@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../db_connect.rb'
+require_relative '../db_connect'
 
 class CreateInterests < ActiveRecord::Migration[6.1]
   def change

@@ -1,4 +1,4 @@
-require_relative '../db_connect.rb'
+require_relative '../db_connect'
 
 class ConnectRequest < ActiveRecord::Base
   has_many :interests
