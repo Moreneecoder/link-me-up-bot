@@ -1,6 +1,7 @@
 require 'json'
 require 'securerandom'
-require 'active_record'
+require_relative '../persistence/models/interest.rb'
+require_relative '../persistence/models/connect_request.rb'
 
 class LinkMeUp
   attr_accessor :ready
@@ -29,23 +30,36 @@ class LinkMeUp
     stripped_request
   end
 
+  # def find_match(message_obj)
+  #   formatted_request = self.formatted_request(message_obj.text)
+
+  #   json = File.read('./bin/connect_request.json')
+  #   obj = JSON.parse(json)
+
+  #   obj['table'].each do |table|
+  #     interests = table['interests']
+
+  #     matched_interests = interests.select { |interest| formatted_request.include? interest }
+
+  #     matched_data = { obj: table, matched_interests: matched_interests }
+
+  #     self.ready = false
+
+  #     return matched_data if matched_interests.count >= 1
+  #   end
+
+  #   false
+  # end
+
   def find_match(message_obj)
-    formatted_request = self.formatted_request(message_obj.text)
+    formatted_request = self.formatted_request(message_obj)
 
-    json = File.read('./bin/connect_request.json')
-    obj = JSON.parse(json)
+    matched_request = Interest.where(title: formatted_request)
+    .group("connect_request_id")
+    .order("count(connect_request_id) DESC")
+    .limit(2);
 
-    obj['table'].each do |table|
-      interests = table['interests']
-
-      matched_interests = interests.select { |interest| formatted_request.include? interest }
-
-      matched_data = { obj: table, matched_interests: matched_interests }
-
-      self.ready = false
-
-      return matched_data if matched_interests.count >= 1
-    end
+    return matched_request unless matched_request.empty?
 
     false
   end
