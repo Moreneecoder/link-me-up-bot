@@ -1,9 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'active_record'
-
-db_options = { adapter: 'sqlite3', database: 'app_db' }
-ActiveRecord::Base.establish_connection(db_options)
+require_relative '../db_connect.rb'
 
 class CreateConnectRequests < ActiveRecord::Migration[6.1]
   def change

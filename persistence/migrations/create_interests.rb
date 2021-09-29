@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'active_record'
+require_relative '../db_connect.rb'
 
 db_options = { adapter: 'sqlite3', database: 'app_db' }
 ActiveRecord::Base.establish_connection(db_options)
