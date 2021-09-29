@@ -1,5 +1,6 @@
 require 'json'
 require 'securerandom'
+require 'active_record'
 
 class LinkMeUp
   attr_accessor :ready
