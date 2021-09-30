@@ -46,28 +46,11 @@ class LinkMeUp
 
   def store_interest(message_obj)
     interests = formatted_request(message_obj.text)
-
-    # data = {
-    #   id: SecureRandom.uuid,
-    #   chat_id: message_obj.chat.id,
-    #   username: message_obj.from.username,
-    #   interests: interests
-    # }
     
     request = ConnectRequest.new(chat_id: message_obj.chat.id, username: message_obj.from.username)
     if request.save
       interests.each {|interest| request.interests.create(title: interest) }
     end
-
-    # json = File.read('./bin/connect_request.json')
-    # obj = JSON.parse(json)
-    # obj['table'].push(data)
-
-    # formatted_data = JSON.pretty_generate(obj)
-
-    # File.open('./bin/connect_request.json', 'w') do |f|
-    #   f.write(formatted_data)
-    # end
 
     self.ready = false
   end

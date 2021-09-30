@@ -74,13 +74,12 @@ class BotClient
   end
 
   def exchange_contact(_bot, message, match_found, _bot_message)
-    p match_found
 
     matched_message = _bot_message.match_found_message(match_found.pluck(:title).uniq)
     _bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
 
     match_found.each do |match|
-      p current_username = "t.me/#{message.from.username}"
+    current_username = "t.me/#{message.from.username}"
     matched_username = "t.me/#{match.connect_request.username}"
 
     
