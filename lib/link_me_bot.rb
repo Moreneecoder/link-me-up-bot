@@ -58,6 +58,7 @@ class LinkMeUp
       .group('connect_request_id')
       .order('count(connect_request_id) DESC')
       .limit(2)
+      .includes(:connect_request)
 
     return matched_request unless matched_request.empty?
 

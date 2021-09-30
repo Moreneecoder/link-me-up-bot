@@ -74,16 +74,17 @@ class BotClient
   end
 
   def send_two_way_contact(bot, message, match_found, bot_message)
-    current_username = "t.me/#{message.from.username}"
-    matched_username = "t.me/#{match_found[:obj]['username']}"
+    p match_found
+    p current_username = "t.me/#{message.from.username}"
+    # matched_username = "t.me/#{match_found[:obj]['username']}"
 
-    matched_message = bot_message.match_found_message(match_found[:matched_interests])
+    # matched_message = bot_message.match_found_message(match_found[:matched_interests])
 
-    bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
-    bot.api.send_message(chat_id: message.chat.id, text: matched_username)
+    # bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+    # bot.api.send_message(chat_id: message.chat.id, text: matched_username)
 
-    bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: matched_message)
-    bot.api.send_message(chat_id: match_found[:obj]['chat_id'], text: current_username)
+    # bot.api.send_message(chat_id: match_found[:obj]['chat_id'], parse_mode: 'MarkdownV2', text: matched_message)
+    # bot.api.send_message(chat_id: match_found[:obj]['chat_id'], text: current_username)
   end
 
   private :listen

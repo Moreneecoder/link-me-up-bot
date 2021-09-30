@@ -1,4 +1,4 @@
-!/usr/bin/env ruby
+#!/usr/bin/env ruby
 require_relative '../lib/bot_client'
 
 bot_client = BotClient.new
