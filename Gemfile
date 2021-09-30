@@ -4,9 +4,8 @@ gem 'rake'
 gem 'require_all'
 gem 'rubocop', '~>0.81.0'
 gem 'securerandom', '~> 0.1.0'
-gem 'sinatra-activerecord'
+gem 'sinatra'
 gem 'telegram-bot-ruby'
-gem 'thin'
 
 group :development do
   gem 'pry'
