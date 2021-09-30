@@ -46,11 +46,9 @@ class LinkMeUp
 
   def store_interest(message_obj)
     interests = formatted_request(message_obj.text)
-    
+
     request = ConnectRequest.new(chat_id: message_obj.chat.id, username: message_obj.from.username)
-    if request.save
-      interests.each {|interest| request.interests.create(title: interest) }
-    end
+    interests.each { |interest| request.interests.create(title: interest) } if request.save
 
     self.ready = false
   end
