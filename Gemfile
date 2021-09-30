@@ -7,6 +7,7 @@ gem 'securerandom', '~> 0.1.0'
 gem 'sinatra'
 gem 'telegram-bot-ruby'
 gem 'pg'
+gem 'yaml'
 
 group :development do
   gem 'pry'

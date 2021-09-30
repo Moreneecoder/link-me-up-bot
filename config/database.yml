@@ -1,0 +1,4 @@
+host: 'localhost'
+adapter: 'postgresql'
+encoding: utf-8
+database: 'link_me_bot'

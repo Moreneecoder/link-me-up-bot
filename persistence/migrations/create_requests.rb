@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require_relative '../db_connect'
 
 class CreateConnectRequests < ActiveRecord::Migration[6.1]

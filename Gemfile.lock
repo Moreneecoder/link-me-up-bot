@@ -57,6 +57,7 @@ GEM
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
+    pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -114,6 +115,7 @@ GEM
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
+    yaml (0.1.1)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -123,6 +125,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   dotenv (~> 2.1, >= 2.1.1)
+  pg
   pry
   rake
   require_all
@@ -133,6 +136,7 @@ DEPENDENCIES
   sqlite3
   telegram-bot-ruby
   tux
+  yaml
 
 BUNDLED WITH
    2.2.28
