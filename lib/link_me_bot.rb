@@ -52,7 +52,7 @@ class LinkMeUp
   # end
 
   def find_match(message_obj)
-    formatted_request = self.formatted_request(message_obj)
+    formatted_request = self.formatted_request(message_obj.text)
 
     matched_request = Interest.where(title: formatted_request)
       .group('connect_request_id')
