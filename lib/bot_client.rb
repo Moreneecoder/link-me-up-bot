@@ -34,7 +34,7 @@ class BotClient
           match_found = @connect_request.find_match(message)
 
           if match_found
-            send_two_way_contact(bot, message, match_found, bot_message)
+            exchange_contact(bot, message, match_found, bot_message)
           elsif !match_found && message.text != '/connect'
 
             @connect_request.store_interest(message)
@@ -73,7 +73,7 @@ class BotClient
     true
   end
 
-  def send_two_way_contact(_bot, message, match_found, _bot_message)
+  def exchange_contact(_bot, message, match_found, _bot_message)
     p match_found
 
     matched_message = _bot_message.match_found_message(match_found.pluck(:title).uniq)
@@ -95,7 +95,7 @@ class BotClient
   private :listen
   private :respond_to_command
   private :interests_not_above_5?
-  private :send_two_way_contact
+  private :exchange_contact
 end
 
 # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
