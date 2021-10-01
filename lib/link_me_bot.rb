@@ -35,6 +35,7 @@ class LinkMeUp
 
     matched_request = Interest.where(title: formatted_request)
       .group('connect_request_id')
+      .group('interests.id')
       .order('count(connect_request_id) DESC')
       .limit(2)
       .includes(:connect_request)
