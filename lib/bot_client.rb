@@ -81,11 +81,9 @@ class BotClient
       current_username = "t.me/#{message.from.username}"
       matched_username = "t.me/#{match.connect_request.username}"
 
-      match_req_interests = match.connect_request.interests.pluck(:title)
-      interests = @connect_request.formatted_request(message.text)
-      response = match_req_interests & interests
+      matched_interest = fetch_interests_per_connec(match, message)
 
-      matched_message = bot_message.match_found_message(response)
+      matched_message = bot_message.match_found_message(matched_interest)
       bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
 
 
@@ -96,10 +94,17 @@ class BotClient
     end
   end
 
+  def fetch_interests_per_connec(match_, message_)
+    match_req_interests = match_.connect_request.interests.pluck(:title)
+    interests = @connect_request.formatted_request(message_.text)
+    response = match_req_interests & interests
+  end
+
   private :listen
   private :respond_to_command
   private :interests_not_above_5?
   private :exchange_contact
+  private :fetch_interests_per_connec
 end
 
 # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
