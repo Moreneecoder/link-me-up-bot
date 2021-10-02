@@ -74,12 +74,20 @@ class BotClient
   end
 
   def exchange_contact(bot, message, match_found, bot_message)
-    matched_message = bot_message.match_found_message(match_found.pluck(:title).uniq)
-    bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+    # matched_message = bot_message.match_found_message(match_found.pluck(:title).uniq)
+    # bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
 
     match_found.each do |match|
       current_username = "t.me/#{message.from.username}"
       matched_username = "t.me/#{match.connect_request.username}"
+
+      match_req_interests = match.connect_request.interests.pluck(:title)
+      interests = @connect_request.formatted_request(message.text)
+      response = match_req_interests & interests
+
+      matched_message = bot_message.match_found_message(response)
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+
 
       bot.api.send_message(chat_id: message.chat.id, text: matched_username)
 
