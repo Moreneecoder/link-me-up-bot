@@ -45,21 +45,19 @@ class LinkMeUp
 
   def store_interest(message_obj)
     interests_request = formatted_request(message_obj.text)
-    interests = self.removeExistingInterests(message_obj, interests_request)
+    p interests = self.removeExistingInterests(message_obj, interests_request)
 
     unless interests.empty?
-      request = ConnectRequest.new(chat_id: message_obj.chat.id, username: message_obj.from.username)
-      interests.each { |interest| request.interests.create(title: interest) } if request.save
+      chat_id = message_obj.chat.id
+      username = message_obj.from.username
+      interests.each { |interest| Interest.create(title: interest, chat_id: chat_id, username: username) }
     end    
 
     self.ready = false
   end
 
   def removeExistingInterests(message_, interests_)
-    # NEXT: CHECK IF USER ALREADY HAS INTEREST IN DATABASE BEFORE DELETING
-    chat_connecs = ConnectRequest.includes(:interests).where(chat_id: message_.chat.id)
-    previous = chat_connecs.map {|connec| connec.interests.where(title: interests_).pluck(:title)}.compact
-
-    interests_ - previous.flatten
+    previous = Interest.where(chat_id: message_.chat.id).where(title: interests_).pluck(:title)
+    interests_ - previous
   end
 end

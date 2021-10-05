@@ -100,7 +100,6 @@ class BotClient
   private :respond_to_command
   private :interests_not_above_5?
   private :exchange_contact
-  private :fetch_interests_per_connec
 end
 
 # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
