@@ -35,12 +35,13 @@ class BotClient
 
           if match_found
             exchange_contact(bot, message, match_found, bot_message)
-          elsif !match_found && message.text != '/connect'
-
-            @connect_request.store_interest(message)
+          elsif !match_found && message.text != '/connect'            
             match_not_found_msg = bot_message.match_not_found_message
             bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
           end
+
+          @connect_request.store_interest(message)
+
         end
       else
         unless @connect_request.valid_command?(message)
@@ -74,30 +75,25 @@ class BotClient
   end
 
   def exchange_contact(bot, message, match_found, bot_message)
-    # matched_message = bot_message.match_found_message(match_found.pluck(:title).uniq)
-    # bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+    current_username = "t.me/#{message.from.username}"
 
-    match_found.each do |match|
-      current_username = "t.me/#{message.from.username}"
-      matched_username = "t.me/#{match.connect_request.username}"
+    contacts = match_found.group('interests.chat_id').order('count(chat_id) DESC').pluck(:chat_id).uniq
 
-      matched_interest = fetch_interests_per_connec(match, message)
+    contacts.take(2).each do |contact|
+      match_set = match_found.where(chat_id: contact)
 
-      matched_message = bot_message.match_found_message(matched_interest)
+      contact_username = "t.me/#{match_set.last.username}"
+      matched_interests = match_set.pluck(:title)
+
+      matched_message = bot_message.match_found_message(matched_interests)
+
       bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: matched_message)
+      bot.api.send_message(chat_id: message.chat.id, text: contact_username)
 
-
-      bot.api.send_message(chat_id: message.chat.id, text: matched_username)
-
-      bot.api.send_message(chat_id: match.connect_request.chat_id, parse_mode: 'MarkdownV2', text: matched_message)
-      bot.api.send_message(chat_id: match.connect_request.chat_id, text: current_username)
+      bot.api.send_message(chat_id: contact, parse_mode: 'MarkdownV2', text: matched_message)
+      bot.api.send_message(chat_id: contact, text: current_username)
     end
-  end
 
-  def fetch_interests_per_connec(match_, message_)
-    match_req_interests = match_.connect_request.interests.pluck(:title)
-    interests = @connect_request.formatted_request(message_.text)
-    response = match_req_interests & interests
   end
 
   private :listen
