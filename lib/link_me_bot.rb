@@ -43,7 +43,7 @@ class LinkMeUp
 
   def store_interest(message_obj)
     interests_request = formatted_request(message_obj.text)
-    p interests = remove_existing_interests(message_obj, interests_request)
+    interests = remove_existing_interests(message_obj, interests_request)
 
     unless interests.empty?
       chat_id = message_obj.chat.id
