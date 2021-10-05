@@ -23,10 +23,10 @@ db_config = {
   adapter: 'postgresql',
   template: 'template0',
   encoding: 'unicode',
-  database: 'link_me_bot',
+  database: 'link_me_bot'
 }
 
-db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
+db_config_admin = db_config.merge({ 'database' => 'postgres', 'schema_search_path' => 'public' })
 
 puts 'connection established' if ActiveRecord::Base.establish_connection(db_config_admin)
 # ActiveRecord::Base.connection.create_database(db_config['database'])

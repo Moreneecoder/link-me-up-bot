@@ -35,7 +35,7 @@ class BotClient
 
           if match_found
             exchange_contact(bot, message, match_found, bot_message)
-          elsif !match_found && message.text != '/connect'            
+          elsif !match_found && message.text != '/connect'
             match_not_found_msg = bot_message.match_not_found_message
             bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
           end
@@ -93,7 +93,6 @@ class BotClient
       bot.api.send_message(chat_id: contact, parse_mode: 'MarkdownV2', text: matched_message)
       bot.api.send_message(chat_id: contact, text: current_username)
     end
-
   end
 
   private :listen

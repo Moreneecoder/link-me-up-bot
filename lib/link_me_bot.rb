@@ -34,9 +34,7 @@ class LinkMeUp
     formatted_request = self.formatted_request(message_obj.text)
 
     matched_interest = Interest.where(title: formatted_request)
-    .where.not(chat_id: message_obj.chat.id)
-
-    matched_request = Interest.where(title: formatted_request)
+      .where.not(chat_id: message_obj.chat.id)
 
     return matched_interest unless matched_interest.empty?
 
@@ -45,18 +43,18 @@ class LinkMeUp
 
   def store_interest(message_obj)
     interests_request = formatted_request(message_obj.text)
-    p interests = self.removeExistingInterests(message_obj, interests_request)
+    p interests = remove_existing_interests(message_obj, interests_request)
 
     unless interests.empty?
       chat_id = message_obj.chat.id
       username = message_obj.from.username
       interests.each { |interest| Interest.create(title: interest, chat_id: chat_id, username: username) }
-    end    
+    end
 
     self.ready = false
   end
 
-  def removeExistingInterests(message_, interests_)
+  def remove_existing_interests(message_, interests_)
     previous = Interest.where(chat_id: message_.chat.id).where(title: interests_).pluck(:title)
     interests_ - previous
   end
