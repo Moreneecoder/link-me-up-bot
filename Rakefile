@@ -1,6 +1,7 @@
 require "active_record"
 require "yaml"
 require 'pg'
+require_relative './persistence/migrations/migrator.rb'
 
 namespace :db do
 
@@ -12,18 +13,14 @@ namespace :db do
 
     puts "Database #{db_name} created." if res
   end
-  # task :create do
-  #   ActiveRecord::Base.establish_connection(db_config_admin)
-  #   ActiveRecord::Base.connection.create_database(db_config["database"])
-  #   puts "Database created."
-  # end
 
   desc "Migrate the database"
   task :migrate do
-    ActiveRecord::Base.establish_connection(db_config)
-    ActiveRecord::Migrator.migrate("db/migrate/")
-    Rake::Task["db:schema"].invoke
-    puts "Database migrated."
+    # ActiveRecord::Base.establish_connection(db_config)
+    # ActiveRecord::Migrator.migrate("db/migrate/")
+    # Rake::Task["db:schema"].invoke
+
+    puts "Database migrated." if Migrator.new.migrate
   end
 
   desc "Drop the database"
