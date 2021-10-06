@@ -1,7 +1,6 @@
 require 'json'
 require 'securerandom'
 require_relative '../persistence/models/interest'
-require_relative '../persistence/models/connect_request'
 
 class LinkMeUp
   attr_accessor :ready
