@@ -13,7 +13,8 @@ namespace :db do
 
   desc "Create the database"
   task :create do
-    # res = conn.exec_params("CREATE DATABASE #{db_name} ENCODING 'UTF8' TEMPLATE template0")
+    # conn = PG::Connection.open(:dbname => 'postgres')
+    # db_create = conn.exec_params("CREATE DATABASE #{db_name} ENCODING 'UTF8' TEMPLATE template0")
 
     db_create = ActiveRecord::Base.connection.create_database(db_name, {
       template: 'template0',
