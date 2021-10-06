@@ -8,7 +8,8 @@ namespace :db do
   conn = ActiveRecord::Base.establish_connection({
     adapter: 'postgresql',
     host: 'localhost',
-    database: 'postgres'  
+    database: 'postgres',
+    schema_search_path: 'public'
   })
 
   desc "Create the database"
