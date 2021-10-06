@@ -5,21 +5,21 @@ require 'pg'
 namespace :db do
   db_name = 'link_me_bot'
 
-  # conn = ActiveRecord::Base.establish_connection({
-  #   adapter: 'postgresql',
-  #   host: 'localhost',
-  #   database: 'postgres'  
-  # })
+  conn = ActiveRecord::Base.establish_connection({
+    adapter: 'postgresql',
+    host: 'localhost',
+    database: 'postgres'  
+  })
 
   desc "Create the database"
   task :create do
-    conn = PG::Connection.open(:dbname => 'postgres', :host => 'localhost', :port => 5432)
-    db_create = conn.exec_params("CREATE DATABASE #{db_name} ENCODING 'UTF8' TEMPLATE template0")
+    # conn = PG::Connection.open(:dbname => 'postgres', :host => 'localhost')
+    # db_create = conn.exec_params("CREATE DATABASE #{db_name} ENCODING 'UTF8' TEMPLATE template0")
 
-    # db_create = ActiveRecord::Base.connection.create_database(db_name, {
-    #   template: 'template0',
-    #   encoding: 'unicode'
-    # })
+    db_create = ActiveRecord::Base.connection.create_database(db_name, {
+      template: 'template0',
+      encoding: 'unicode'
+    })
 
     puts "Database #{db_name} created." if db_create
   end
@@ -32,7 +32,7 @@ namespace :db do
 
   desc "Drop the database"
   task :drop do 
-    conn = PG::Connection.open(:dbname => 'postgres')
+    conn = PG::Connection.open(:dbname => 'postgres', :host => 'localhost')
     db_drop = conn.exec_params("DROP DATABASE IF EXISTS #{db_name}")
 
     # db_drop = ActiveRecord::Base.connection.drop_database(db_name)
