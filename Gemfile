@@ -11,9 +11,7 @@ gem 'yaml'
 
 group :development do
   gem 'pry'
-  gem 'shotgun'
   gem 'sqlite3'
-  gem 'tux'
 end
 
 source 'https://rubygems.org'
