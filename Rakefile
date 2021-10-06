@@ -1,17 +1,22 @@
 require "active_record"
 require "yaml"
+require 'pg'
 
 namespace :db do
 
-  db_config = YAML::load(File.open("config/database.yml"))
-  db_config_admin = db_config.merge({"database" => "postgres", "schema_search_path" => "public"})
-
   desc "Create the database"
   task :create do
-    ActiveRecord::Base.establish_connection(db_config_admin)
-    ActiveRecord::Base.connection.create_database(db_config["database"])
-    puts "Database created."
+    db_name = 'link_me_bot'
+    conn = PG::Connection.open(:dbname => 'postgres')
+    res = conn.exec_params("CREATE DATABASE #{db_name} ENCODING 'UTF8' TEMPLATE template0")
+
+    puts "Database #{db_name} created." if res
   end
+  # task :create do
+  #   ActiveRecord::Base.establish_connection(db_config_admin)
+  #   ActiveRecord::Base.connection.create_database(db_config["database"])
+  #   puts "Database created."
+  # end
 
   desc "Migrate the database"
   task :migrate do
