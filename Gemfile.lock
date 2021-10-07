@@ -107,7 +107,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   dotenv (~> 2.1, >= 2.1.1)
-  pg
+  pg (>= 0.18, < 2.0)
   pry
   rake
   require_all
