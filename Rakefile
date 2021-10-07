@@ -5,19 +5,22 @@ require 'pg'
 namespace :db do
   db_name = 'link_me_bot'
 
+  # conn = ActiveRecord::Base.establish_connection({
+  #   adapter: 'postgresql',
+  #   uri: 'postgres://pdoevfkghzlshv:dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4@ec2-18-214-214-252.compute-1.amazonaws.com:5432/d18ioam4eqmpm9',
+  #   user: 'pdoevfkghzlshv',
+  #   host: 'ec2-18-214-214-252.compute-1.amazonaws.com',
+  #   password: 'dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4',
+  #   port: '5432',
+  #   database: 'd18ioam4eqmpm9',
+  #   template: 'template0',
+  #   schema_search_path: 'public'
+  # })
+
   conn = ActiveRecord::Base.establish_connection({
     adapter: 'postgresql',
-    # host: 'localhost',
-    uri: 'postgres://pdoevfkghzlshv:dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4@ec2-18-214-214-252.compute-1.amazonaws.com:5432/d18ioam4eqmpm9',
-    user: 'pdoevfkghzlshv',
-    host: 'ec2-18-214-214-252.compute-1.amazonaws.com',
-    password: 'dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4',
-    port: '5432',
-    # host: '0.0.0.0',
-    # database: 'postgres',
-    database: 'd18ioam4eqmpm9',
-    template: 'template0',
-    schema_search_path: 'public'
+    host: 'localhost',    
+    database: 'postgres'  
   })
 
   desc "Create the database"
@@ -27,8 +30,7 @@ namespace :db do
 
     db_create = ActiveRecord::Base.connection.create_database(db_name, {
       template: 'template0',
-      encoding: 'unicode',
-      owner: 'pdoevfkghzlshv'
+      encoding: 'unicode',      
     })
 
     puts "Database #{db_name} created." if db_create
