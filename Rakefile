@@ -27,7 +27,8 @@ namespace :db do
 
     db_create = ActiveRecord::Base.connection.create_database(db_name, {
       template: 'template0',
-      encoding: 'unicode'
+      encoding: 'unicode',
+      owner: 'pdoevfkghzlshv'
     })
 
     puts "Database #{db_name} created." if db_create
