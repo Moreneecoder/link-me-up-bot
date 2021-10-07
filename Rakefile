@@ -7,7 +7,8 @@ namespace :db do
 
   conn = ActiveRecord::Base.establish_connection({
     adapter: 'postgresql',
-    host: '127.0.0.1',
+    host: 'localhost',
+    port: '5432',
     # host: '0.0.0.0',
     database: 'postgres',
     template: 'template0',
