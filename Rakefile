@@ -6,7 +6,7 @@ namespace :db do
   db_name = 'link_me_bot'
 
   db_config = YAML::load(File.open('config/database.yml'))
-  db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
+  p db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
   environment = ENV['RACK_ENV'] || 'development'
 
   # conn = ActiveRecord::Base.establish_connection({
@@ -40,7 +40,7 @@ namespace :db do
     #   encoding: 'unicode',      
     # })
 
-    ActiveRecord::Base.establish_connection(db_config_admin[environment])
+    ActiveRecord::Base.establish_connection(db_config_admin)
     ActiveRecord::Base.connection.create_database(db_config["database"])
 
     puts "Database #{db_name} created." if db_create
