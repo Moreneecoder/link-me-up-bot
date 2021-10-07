@@ -17,11 +17,13 @@ namespace :db do
   #   schema_search_path: 'public'
   # })
 
-  conn = ActiveRecord::Base.establish_connection({
-    adapter: 'postgresql',
-    host: 'localhost',    
-    database: 'postgres'
-  })
+  conn = ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+
+  # conn = ActiveRecord::Base.establish_connection({
+  #   adapter: 'postgresql',
+  #   host: 'localhost',    
+  #   database: 'postgres'
+  # })
 
   desc "Create the database"
   task :create do
