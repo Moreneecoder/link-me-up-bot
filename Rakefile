@@ -8,6 +8,7 @@ namespace :db do
   conn = ActiveRecord::Base.establish_connection({
     adapter: 'postgresql',
     # host: 'localhost',
+    uri: 'postgres://pdoevfkghzlshv:dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4@ec2-18-214-214-252.compute-1.amazonaws.com:5432/d18ioam4eqmpm9',
     user: 'pdoevfkghzlshv',
     host: 'ec2-18-214-214-252.compute-1.amazonaws.com',
     password: 'dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4',
