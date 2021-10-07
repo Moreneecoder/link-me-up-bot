@@ -45,7 +45,7 @@ namespace :db do
 
   desc "Migrate the database"
   task :migrate do
-    ActiveRecord::Base.establish_connection(db_config_admin[environment])
+    # ActiveRecord::Base.establish_connection(db_config_admin[environment])
     require_relative './persistence/migrations/migrator.rb'
     puts "Database migrated." if Migrator.new.migrate
   end

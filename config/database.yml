@@ -1,4 +1,4 @@
 host: 'localhost'
 adapter: 'postgresql'
 encoding: 'unicode'
-database: 'link_me_bot'
+database: <%= ENV['DATABASE_URL'] || 'postgres://localhost/mydb' %>
