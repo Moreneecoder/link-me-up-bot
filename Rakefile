@@ -25,12 +25,12 @@ namespace :db do
     # conn = PG::Connection.open(:dbname => 'postgres', :host => 'localhost')
     # db_create = conn.exec_params("CREATE DATABASE #{db_name} ENCODING 'UTF8' TEMPLATE template0")
 
-    db_create = ActiveRecord::Base.connection.create_database(db_name, {
+    db_create = ActiveRecord::Base.connection.create_database({
       template: 'template0',
       encoding: 'unicode'
     })
 
-    puts "Database #{db_name} created." if db_create
+    puts "Database created." if db_create
   end
 
   desc "Migrate the database"
