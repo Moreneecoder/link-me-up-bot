@@ -38,7 +38,7 @@ namespace :db do
     #   encoding: 'unicode',      
     # })
 
-    ActiveRecord::Base.connection.create_database(db_config["database"])
+    ActiveRecord::Base.connection.create_database('link_me_bot')
 
     puts "Database #{db_name} created." if db_create
   end
