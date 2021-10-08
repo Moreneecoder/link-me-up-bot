@@ -38,14 +38,14 @@ namespace :db do
     #   encoding: 'unicode',      
     # })
 
-    ActiveRecord::Base.connection.create_database('link_me_bot')
+    ActiveRecord::Base.connection.create_database(db_config["database"])
 
     puts "Database #{db_name} created." if db_create
   end
 
   desc "Migrate the database"
   task :migrate do
-    # ActiveRecord::Base.establish_connection(db_config_admin[environment])
+    ActiveRecord::Base.establish_connection(db_config_admin[environment])
     require_relative './persistence/migrations/migrator.rb'
     puts "Database migrated." if Migrator.new.migrate
   end
