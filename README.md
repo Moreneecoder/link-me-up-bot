@@ -11,6 +11,9 @@ The LinkMeUp bot is a mini social networking system built ontop of the Telegram 
 - Ruby programming language
 - [Telegram-Bot-Ruby](https://github.com/atipugin/telegram-bot-ruby) library
 - RSpec
+- ActiveRecord Gem
+- Sinatra
+- PostgreSQL
 
 ## Getting Started
 
@@ -24,9 +27,16 @@ To set up a local version of this project, a collection of steps have been put t
 - Navigate to the preferred location/folder you want the app on your local machine. Use `cd <file-path>` for this.
 - Run `git clone https://github.com/Moreneecoder/link-me-up-bot.git` to download the bot source file.
 - Now that you have a local copy of the project, navigate to the root of the project folder from your terminal.
+
 - Run `bundle install` to install all dependencies in the Gemfile file.
+- Run `rake db:create` to create the database.
+- Run `rake db:migrate` to migrate/create database tables.
+- Alternatively, you can `run rake db:reset` to drop database, recreate the database and then recreate the tables in one command.
+
+> You need to have PostgreSQL installed on your machine for your database actions to work. If you don't know how, you can do so [here](https://www.freecodecamp.org/news/how-to-get-started-with-postgresql-9d3bc1dd1b11/)
+
 - One last **important** detail. To control your bot uniquely, you will need a Telegram Bot Api *token* from the [Botfather](https://core.telegram.org/bots#6-botfather)
-- When you get your api token from Botfather, open the bot_client.rb file and replace the value of the token class variable with your new token. The current value of the token variable should be `ENV['BOT_API_KEY']`.
+- When you get your api token from Botfather, open the `bot_client.rb` file and replace the value of the token class variable with your new token. The current value of the token variable should be `ENV['BOT_API_KEY']`. Or alternatively, you could create a `.env` file and put the token in there.
 
 ### Other Dependencies
 
@@ -67,7 +77,7 @@ To get the bot running, follow the instructions below:
 * If a match is not found instantly, the program will store your interest in the connect_request.json file.
 * When a new connection request that matches your interest comes along, you will get their chat link and they will get yours.
 
-![](https://user-images.githubusercontent.com/38987207/110536384-b07fc700-8121-11eb-929a-ac7c51755abb.png)
+![](https://user-images.githubusercontent.com/38987207/110536384-b07fc700-8121-11eb-929a-ac7c51755abb.png) 
 
 * That's it! Have fun!
 
