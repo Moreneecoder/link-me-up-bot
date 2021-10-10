@@ -6,16 +6,13 @@ namespace :db do
 
   db_config = YAML.safe_load(File.open('config/database.yml'), aliases: true)
   db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
+  connector = db_config
 
   if ENV['RACK_ENV']
     environment = ENV['RACK_ENV']
     db_config['database'] = ENV['DATABASE_URL'] || 'postgres://localhost/mydb'
-    connector = db_config[enviroment]
+    connector = db_config[environment]
     p "It's production"
-  else
-    environment = 'development'
-    connector = db_config
-    p "It's development"
   end
 
   desc "Create the database"
