@@ -1,21 +1,3 @@
-# default: &default
-#   host: 'localhost'
-#   adapter: 'postgresql'
-#   encoding: 'unicode'
-
-# development:
-#   <<: *default
-#   database: link_me_bot
-
-# test:
-#   <<: *default
-#   database: link_me_bot_test
-
-# production:
-#   <<: *default
-#   database: <%= ENV['DATABASE_URL'] || 'postgres://localhost/mydb' %>
-#   enviroment: <%= ENV['RACK_ENV'] || 'development' %>
-
 host: 'localhost'
 adapter: 'postgresql'
 encoding: 'unicode'
