@@ -3,23 +3,6 @@ require_relative './persistence/db_connect.rb'
 namespace :db do
   db_name = 'link_me_bot'
 
-  # db_config = YAML::load(File.open('config/database.yml'))
-  # p db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
-  # environment = ENV['RACK_ENV'] || 'development'
-
-  # conn = ActiveRecord::Base.establish_connection({
-  #   adapter: 'postgresql',
-  #   uri: 'postgres://pdoevfkghzlshv:dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4@ec2-18-214-214-252.compute-1.amazonaws.com:5432/d18ioam4eqmpm9',
-  #   user: 'pdoevfkghzlshv',
-  #   host: 'ec2-18-214-214-252.compute-1.amazonaws.com',
-  #   password: 'dac59925bb7346e3621b2b90db067520a3b6a2201e4287d9a21da896325da1a4',
-  #   port: '5432',
-  #   database: 'd18ioam4eqmpm9',
-  #   template: 'template0',
-  #   schema_search_path: 'public'
-  # })
-
-  # ENV['RACK_ENV']
   # conn = ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 
   # conn = ActiveRecord::Base.establish_connection({
@@ -35,7 +18,7 @@ namespace :db do
 
     # db_create = ActiveRecord::Base.connection.create_database(db_name, {
     #   template: 'template0',
-    #   encoding: 'unicode',      
+    #   encoding: 'unicode',  
     # })
 
     ActiveRecord::Base.connection.create_database(db_config["database"])
