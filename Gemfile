@@ -11,7 +11,6 @@ gem 'yaml'
 
 group :development do
   gem 'pry'
-  gem 'sqlite3'
 end
 
 source 'https://rubygems.org'
