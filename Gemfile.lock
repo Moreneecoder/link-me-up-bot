@@ -83,7 +83,6 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
-    sqlite3 (1.4.2)
     telegram-bot-ruby (0.16.0)
       dry-inflector
       faraday
@@ -114,7 +113,6 @@ DEPENDENCIES
   rubocop (~> 0.81.0)
   securerandom (~> 0.1.0)
   sinatra
-  sqlite3
   telegram-bot-ruby
   yaml
 
