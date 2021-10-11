@@ -1,5 +1,6 @@
 require 'json'
 require 'securerandom'
+require_relative '../persistence/models/interest'
 
 class LinkMeUp
   attr_accessor :ready
@@ -31,44 +32,29 @@ class LinkMeUp
   def find_match(message_obj)
     formatted_request = self.formatted_request(message_obj.text)
 
-    json = File.read('./bin/connect_request.json')
-    obj = JSON.parse(json)
+    matched_interest = Interest.where(title: formatted_request)
+      .where.not(chat_id: message_obj.chat.id)
 
-    obj['table'].each do |table|
-      interests = table['interests']
-
-      matched_interests = interests.select { |interest| formatted_request.include? interest }
-
-      matched_data = { obj: table, matched_interests: matched_interests }
-
-      self.ready = false
-
-      return matched_data if matched_interests.count >= 1
-    end
+    return matched_interest unless matched_interest.empty?
 
     false
   end
 
   def store_interest(message_obj)
-    interests = formatted_request(message_obj.text)
+    interests_request = formatted_request(message_obj.text)
+    interests = remove_existing_interests(message_obj, interests_request)
 
-    data = {
-      id: SecureRandom.uuid,
-      chat_id: message_obj.chat.id,
-      username: message_obj.from.username,
-      interests: interests
-    }
-
-    json = File.read('./bin/connect_request.json')
-    obj = JSON.parse(json)
-    obj['table'].push(data)
-
-    formatted_data = JSON.pretty_generate(obj)
-
-    File.open('./bin/connect_request.json', 'w') do |f|
-      f.write(formatted_data)
+    unless interests.empty?
+      chat_id = message_obj.chat.id
+      username = message_obj.from.username
+      interests.each { |interest| Interest.create(title: interest, chat_id: chat_id, username: username) }
     end
 
     self.ready = false
+  end
+
+  def remove_existing_interests(message_, interests_)
+    previous = Interest.where(chat_id: message_.chat.id).where(title: interests_).pluck(:title)
+    interests_ - previous
   end
 end
