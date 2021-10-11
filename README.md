@@ -74,7 +74,7 @@ To get the bot running, follow the instructions below:
 
 ![](https://user-images.githubusercontent.com/38987207/110533927-c8a21700-811e-11eb-81aa-46d544874330.png)
 
-* If a match is not found instantly, the program will store your interest in the connect_request.json file.
+* If a match is not found instantly, the program will store your interests in the database.
 * When a new connection request that matches your interest comes along, you will get their chat link and they will get yours.
 
 ![](https://user-images.githubusercontent.com/38987207/110536384-b07fc700-8121-11eb-929a-ac7c51755abb.png) 
