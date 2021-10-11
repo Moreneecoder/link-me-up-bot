@@ -83,7 +83,6 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
-    sqlite3 (1.4.2)
     telegram-bot-ruby (0.16.0)
       dry-inflector
       faraday
@@ -102,21 +101,19 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
-  x86_64-linux
 
 DEPENDENCIES
   activerecord
   dotenv (~> 2.1, >= 2.1.1)
-  pg
+  pg (>= 0.18, < 2.0)
   pry
   rake
   require_all
   rubocop (~> 0.81.0)
   securerandom (~> 0.1.0)
   sinatra
-  sqlite3
   telegram-bot-ruby
   yaml
 
 BUNDLED WITH
-   2.2.28
+   2.2.29
