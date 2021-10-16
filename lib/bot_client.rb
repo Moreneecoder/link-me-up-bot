@@ -25,7 +25,7 @@ class BotClient
   def listen(bot)
     bot.listen do |message|
       p message
-      p message.old_chat_member.user
+      p message.from
       p message.new_chat_member.user
 
       bot_message = BotMessage.new(message)
