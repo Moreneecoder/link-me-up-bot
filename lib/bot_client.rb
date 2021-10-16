@@ -25,7 +25,7 @@ class BotClient
   def listen(bot)
     bot.listen do |message|
       p message
-      p message.from
+      p message.from.username
       p message.new_chat_member.user
 
       bot_message = BotMessage.new(message)
@@ -56,6 +56,7 @@ class BotClient
   end
 
   def respond_to_command(bot, message, bot_message)
+
     case message.text
     when '/start'
       bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.start_message)
