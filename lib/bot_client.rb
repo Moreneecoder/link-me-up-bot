@@ -24,7 +24,7 @@ class BotClient
 
   def listen(bot)
     bot.listen do |message|
-      p message
+      p message.old_chat_member
       bot_message = BotMessage.new(message)
       respond_to_command(bot, message, bot_message)
 
