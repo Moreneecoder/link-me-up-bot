@@ -24,37 +24,42 @@ class BotClient
 
   def listen(bot)
     bot.listen do |message|
-      p message
-      p message.from.username 
 
-      if message.from.username.nil?
-        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: 'You do not have a Username, hence you cannot use this service\\.')
-        return
+      if message.respond_to?(:text) && !message.text.nil?
+        processMessage(bot, message, @connect_request)
       end
 
-      bot_message = BotMessage.new(message)
-      respond_to_command(bot, message, bot_message)
+    end
+  end
 
-      connection_ready = @connect_request.ready?(message.text) && message.text != '/connect'
+  def processMessage(bot, message,connect_request)
+    if message.from.username.nil?
+      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: 'You do not have a Username, hence you cannot use this service\\.')
+      return
+    end
 
-      if connection_ready
-        if interests_not_above_5?(bot, message, bot_message)
-          match_found = @connect_request.find_match(message)
+    bot_message = BotMessage.new(message)
+    respond_to_command(bot, message, bot_message)
 
-          if match_found
-            exchange_contact(bot, message, match_found, bot_message)
-          elsif !match_found && message.text != '/connect'
-            match_not_found_msg = bot_message.match_not_found_message
-            bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
-          end
+    connection_ready = connect_request.ready?(message.text) && message.text != '/connect'
 
-          @connect_request.store_interest(message)
+    if connection_ready
+      if interests_not_above_5?(bot, message, bot_message)
+        match_found = connect_request.find_match(message)
 
+        if match_found
+          exchange_contact(bot, message, match_found, bot_message)
+        elsif !match_found && message.text != '/connect'
+          match_not_found_msg = bot_message.match_not_found_message
+          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
         end
-      else
-        unless @connect_request.valid_command?(message)
-          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
-        end
+
+        connect_request.store_interest(message)
+
+      end
+    else
+      unless connect_request.valid_command?(message)
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
       end
     end
   end
