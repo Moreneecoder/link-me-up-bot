@@ -24,29 +24,42 @@ class BotClient
 
   def listen(bot)
     bot.listen do |message|
-      bot_message = BotMessage.new(message)
-      respond_to_command(bot, message, bot_message)
+      process_message(bot, message, @connect_request) if message.respond_to?(:text) && !message.text.nil?
+    end
+  end
 
-      connection_ready = @connect_request.ready?(message.text) && message.text != '/connect'
+  def process_message(bot, message, connect_request)
+    if message.from.username.nil?
+      bot.api.send_message(
+        chat_id: message.chat.id, parse_mode: 'MarkdownV2',
+        text: 'You do not have a Username, hence you cannot use this service\\.'
+      )
 
-      if connection_ready
-        if interests_not_above_5?(bot, message, bot_message)
-          match_found = @connect_request.find_match(message)
+      return
+    end
 
-          if match_found
-            exchange_contact(bot, message, match_found, bot_message)
-          elsif !match_found && message.text != '/connect'
-            match_not_found_msg = bot_message.match_not_found_message
-            bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
-          end
+    bot_message = BotMessage.new(message)
+    respond_to_command(bot, message, bot_message)
 
-          @connect_request.store_interest(message)
+    connection_ready = connect_request.ready?(message.text) && message.text != '/connect'
 
+    if connection_ready
+      if interests_not_above_5?(bot, message, bot_message)
+        match_found = connect_request.find_match(message)
+
+        if match_found
+          exchange_contact(bot, message, match_found, bot_message)
+        elsif !match_found && message.text != '/connect'
+          match_not_found_msg = bot_message.match_not_found_message
+          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: match_not_found_msg)
         end
-      else
-        unless @connect_request.valid_command?(message)
-          bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
-        end
+
+        connect_request.store_interest(message)
+
+      end
+    else
+      unless connect_request.valid_command?(message)
+        bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: bot_message.help_message)
       end
     end
   end
