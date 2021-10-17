@@ -24,13 +24,17 @@ class BotClient
 
   def listen(bot)
     bot.listen do |message|
-      processMessage(bot, message, @connect_request) if message.respond_to?(:text) && !message.text.nil?
+      process_message(bot, message, @connect_request) if message.respond_to?(:text) && !message.text.nil?
     end
   end
 
-  def processMessage(bot, message, connect_request)
+  def process_message(bot, message, connect_request)
     if message.from.username.nil?
-      bot.api.send_message(chat_id: message.chat.id, parse_mode: 'MarkdownV2', text: 'You do not have a Username, hence you cannot use this service\\.')
+      bot.api.send_message(
+        chat_id: message.chat.id, parse_mode: 'MarkdownV2',
+        text: 'You do not have a Username, hence you cannot use this service\\.'
+      )
+
       return
     end
 
