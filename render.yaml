@@ -1,0 +1,26 @@
+databases:
+  - name: postgres
+    plan: free
+    ipAllowList: []
+
+services:
+  - type: web
+    name: link-me-up-bot
+    env: ruby
+    plan: free
+    buildCommand: ./bin/render-build.sh
+    startCommand: bundle exec ruby bin/main.rb
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: OPENAI_SECRET_KEY
+        sync: false
+      - key: TELEGRAM_API_KEY
+        sync: false
+  
+
+  - type: redis
+    name: redis
+    ipAllowList: []
+    plan: free
+    maxmemoryPolicy: noeviction
